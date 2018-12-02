@@ -94,7 +94,7 @@ class Example_5_Couroutine extends FlatSpec{
     "A real async structure" should "has higher productive effectiveness" in {
         implicit val timeout = Timeout(10 seconds)
 
-        /** 新建一个线程，其中有 3 个 player */
+        /** 新建一个线程池，其中有 3 个 player */
         implicit val player: ExecutionContext = ExecutionContext.fromExecutor(new ForkJoinPool(3))
         implicit val system = ActorSystem.create("testSystem", null, null, player)
         val gameRef = system.actorOf(Props[GameActor])
