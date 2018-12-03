@@ -200,12 +200,10 @@ object Example_5_Couroutine {
 
     case class Hit(ball: Int, count: Int)
     class GameActor extends Actor {
-        implicit val timeout = Timeout(10 seconds)
-
         override def receive: Receive = {
             case Hit(ball: Int, count: Int) => {
                 println(s"Thread-${Thread.currentThread.getId}: Ball $ball with $count hits!")
-                sender ? Hit(ball, count + 1)
+                sender ! Hit(ball, count + 1)
             }
         }
     }
